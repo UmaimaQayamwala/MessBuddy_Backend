@@ -25,7 +25,13 @@ initRedis();
 // routes
 configRoutes(app);
 
-
+app.get("/",(req,res)=>
+{
+  return res.json({
+    sucess:true,
+    message:"sucessfully deployed"
+  })
+})
 
 app.listen(port, ()=>{
     console.log("Backend server is running");
