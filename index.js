@@ -7,13 +7,16 @@ const { configRoutes } = require("./routes/configRoutes");
 const { initRedis } = require("./utils/redisClient");
 
 const app = express();
-  
+ const port=process.env.PORT ||8000 
 
 // config env (dotenv)
 configEnv();    
 
 // cors, express.json
 middlewareConfig(app);
+
+
+
 
 // connect to db
 connectDB();
@@ -22,6 +25,8 @@ initRedis();
 // routes
 configRoutes(app);
 
-app.listen(5000, ()=>{
+
+
+app.listen(port, ()=>{
     console.log("Backend server is running");
 });
