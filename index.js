@@ -7,10 +7,10 @@ const { configRoutes } = require("./routes/configRoutes");
 const { initRedis } = require("./utils/redisClient");
 
 const app = express();
-
+  
 
 // config env (dotenv)
-configEnv();
+configEnv();    
 
 // cors, express.json
 middlewareConfig(app);
