@@ -143,8 +143,13 @@ const deletePin = async (req, res) => {
        
         const pinId = req.params.id;
         const pin = await Pin.findOne({ idd: pinId });
-        // console.log("-------------",pin);
-       
+
+        // return res.status(200).json({
+        //     pin,
+        //     message:"pinnnnn"
+        // })
+        // console.log("-------------",pin);;
+       console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
         
 
 //         // await redisClient.set("pins", 1);

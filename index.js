@@ -7,7 +7,7 @@ const { configRoutes } = require("./routes/configRoutes");
 const { initRedis } = require("./utils/redisClient");
 
 const app = express();
- const port=process.env.PORT ||8000 
+
 
 // config env (dotenv)
 configEnv();    
@@ -17,7 +17,7 @@ middlewareConfig(app);
 
 
 
-
+ const port=process.env.PORT ||8000 
 // connect to db
 connectDB();
 initRedis();
