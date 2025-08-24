@@ -6,16 +6,13 @@ const unauthorizedMsg = "You are not authorized to create, update and delete thi
 const createPin = async (req,res)=>{
     const user = req.body.username;
 
-    // console.log("userrr---------------------------",user)
-    // const newPin = new Pin(req.body);
-    // console.log("reqb22222222222222222222222222222222222222222222------------------------------------------------------------------------------->",req.body);
+  
     let title=req.body.title;
     let lat =req.body.lat;
     let long= req.body.long;
     let rating=req.body.rating;
     let desc=req.body.desc;
 
-//    console.log("ratindggsss",rating)
 let idd=lat.toString();
    let newobj={
     "username":user,"title":title,"lat":lat,"long":long,"rating":rating,"desc":desc,"idd":idd
@@ -23,15 +20,14 @@ let idd=lat.toString();
 
 
      const newPin = new Pin(newobj);
-    // console.log("newpin------------------------------------------------------------------------------------------------------",newPin);
+  
     try {
-        // user.username===newPin.username
+    
         if(1) {
             const savedPin = await newPin.save();
 
          
-            //  savedPin._id=toString(savedPin._id)
-            // console.log("sp---------------------------------->",savedPin);
+           
             await redisClient.set(title,  JSON.stringify(savedPin));
       
             res.status(200).json(savedPin);
@@ -39,28 +35,14 @@ let idd=lat.toString();
         else res.status(403).json({ message: unauthorizedMsg });
     } catch (error) {
         
-        // console.log("hii");
+        
         console.log(error);
         res.status(500).json(error);
     }
 };
 
 const getAllPins = async (req,res)=>{
-    // try {
-    //     let pins = await redisClient.get("pins");
-    //     if(pins) {
-    //         pins = JSON.parse(pins);
-    //     }
-    //     else {
-    //         pins = await Pin.find();
-    //         await redisClient.set("pins", JSON.stringify(pins));
-    //     }
-    //     return res.status(200).json(pins);
-    // } catch (error) {
-    //     res.status(500).json(error);
-    // }
 
-    // .............................................................................................................................................................
     try {
         const keys = await redisClient.keys("*");
         // console.log("keys",keys);
@@ -83,8 +65,7 @@ const getAllPins = async (req,res)=>{
         
             
             if (lat && long) {
-                // pins.push(JSON.parse(data.lat)); // convert string back to object
-                // pins.push(JSON.parse(data.long)); // convert string back to object
+                
                 lnl.push({"lat":lat,"long":long,"title":title,"desc":desc,"username":username,"id":id, "rating" :rating,"idd":idd });
             }
         }
